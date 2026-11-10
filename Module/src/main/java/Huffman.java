@@ -54,7 +54,25 @@ public class Huffman {
      */
     public static HuffmanNode createHuffTree(int[] freq) {
         // TODO: implement
-        return null;
+        HQueue queue= new HuffmanPQ();
+
+        for ( int i=0; i<freq.length;i++){
+            if(freq[i]>0){
+                HuffmanLeaf leaf= new HuffmanLeaf(freq[i],(char)i);
+                queue.enqueue(leaf);
+            }
+
+        }
+        while(queue.count()>1){
+            HuffmanTree first= queue.dequeue();
+            HuffmanTree second= queue.dequeue();
+            HuffmanTree combined= first.combine(second);
+            queue.enqueue(combined);
+        }
+        if(queue.isEmpty()){
+            return null;
+        }
+        return (HuffmanNode) queue.dequeue();
     }
 
     /**
