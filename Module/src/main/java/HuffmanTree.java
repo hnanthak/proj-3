@@ -17,7 +17,10 @@ public interface HuffmanTree extends Comparable<HuffmanTree> {
      * other goes on the right. The new node's frequency is the sum of a's
      * and b's frequencies. The new node's charAscii value is the smaller
      * of a's and b's charAscii values (used to break ties later on).
+     *
+     *
      */
+
     public HuffmanTree combine(HuffmanTree other);
 
     /**
