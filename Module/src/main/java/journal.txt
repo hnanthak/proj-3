@@ -2,62 +2,71 @@
 Date: November 4
 Start time: 5 p.m
 Went over the project and reviewed the Huffman tree interface comparing the trees.
-Looking over the requirements for the trees, included the frequency counting, assigned files, encoding/decoding files.
+Looking over the requirments for the trees, included the frequency counting, assigned files, encoding/decoding files.
 We divided the work to work on different files.
 End time: 5:30 p.m
 
 
-Start time: 6:00 p.m
-Harshita - Wrote the pseudo code for Huffman.java.
-Shreya - Started to implement the methods in HuffmanLeaf.java for the project.
+Start time: 6:00 PM
+Harshitha - Wrote the pseudo code for Huffman.java.
+Shreya - Started to implement te methods in HuffmanLeaf.java for the project.
 Began by writing the comesBefore() in order to compare the two HuffmanTrees.
-End time: 6:30 p.m
+End time: 6:30 P.m
 
 
 Date: November 5
-Start time: 4:00 p.m
+Start time: 4:00 PM
 Shreya - Researched to understand ASCII values to break ties.
 Implemented the combine() in order to make a new internal node with the correct left and right children, combined the freq, and the min. ASCII value
-Harshita - Working on implementing the methods and to construct the Huffman Tree
+Harshitha - Working on implementing the methods and to construct the Huffman Tree
 Worked on cntFreq() to read an input file and to also count character freq.
-End time: 4:30 p.m
+End time: 4:30 PM
 
 
 Date: November 6
-Start time: 4:00 p.m
+Start time: 4:00 PM
 Shreya - Implementing the compareTo() to support the consistent ordering.
 Continued to implement in the HuffmanNode.java, to compare between the leaves and the nodes.
-Harshita - Worked on the createHeader() to make the header which also contains ASCII and the freq.
+Harshitha - Worked on the createHeader() to make the header which also contains ASCII and the freq.
 Continued to work on createHuffTree() to keep repeating the two smallest trees, combine, and return the final root.
 Constructing the final tree.
-End time: 4:45 p.m
+End time: 4:45 PM
 
 
 Date: November 7
-Start time: 2:00 p.m
+Start time: 2:00 PM
 Shreya - For the HuffmanNode.java I implemented the internal-node combine() method using the same order from HuffmanLeaf.java
 Reviewing the record files and the test file.
-End time: 2:20 p.m
+End time: 2:20 PM
 
 
-Start time: 3:00 p.m
+Start time: 3:00 PM
 Shreya - The tests contain the comparing leaves, comparing internal nodes, and to check the result for parent nodes.
 Checked the combined nodes for the ASCII value, and child ordering.
 Ran the tests and some of the tests failed.
-End time: 3:40 p.m
+End time: 3:40 PM
 
 
-Start time: 4:30 p.m
-Harshita: I continued to work with the code-table generation and the file with the encoding/decoding function.
+Start time: 4:30 P.M
+Harshitha: I contined to work with the code-table generation and the file with the encoding/decoding function.
 Ran the tests but some of them failed in cntFreq() and createHeader().
-End time: 5:00 p.m
+End time: 5:00 PM
 
 
 November 8
-Start time: 3:00 p.m
+Start time: 3:00 P.m
 Working together on our failed tests.
 Fixing the failed tests in the freq comparison test.
 Also fixed the cntFreq() and createHeader() by the file output comparison test.
 Making sure the methods in Huffman.java, HuffmanLeaf.java, and HuffmanNode.java work the way they are expected to.
 End time: 3:50 p.m
+
+November 11:
+start tiem : 1:30 PM
+
+Started to fix any final changes
+started debugging more
+final test case implmentations
+last push to github maybe?
+End time: 2:07PM about to turn in
 
