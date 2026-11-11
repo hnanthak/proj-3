@@ -151,6 +151,30 @@ public class Huffman {
      */
     public static void huffmanEncode(String inFile, String outFile) throws IOException {
         // TODO: implement
+        int[] freq = cntFreq(inFile);
+        HuffmanTree tree = createHuffTree(freq);
+        String[] codes = createCode(tree);
+        if (tree == null){
+            return;
+        }
+
+        try (FileInputStream input = new FileInputStream(inFile);
+
+             FileWriter output = new FileWriter(outFile)) {
+
+            int charec = input.read();
+            String header = createHeader(freq);
+            output.write(header);
+            output.write("\n");
+
+            while (charec != -1) {
+                String code = codes[charec];
+                output.write(code);
+                charec = input.read();
+            }
+
+
+        }
     }
 
     /**
@@ -162,7 +186,18 @@ public class Huffman {
      */
     public static int[] parseHeader(String headerString) {
         int[] freq = new int[NUM_CHARS];
-        // TODO: implement
+        if (headerString.isEmpty()){
+            return freq;
+        }
+        String[] parts= headerString.split(" ");
+
+        for(int i=0; i< parts.length; i+=2) {
+            int acsii = Integer.parseInt(parts[i]);
+            int count = Integer.parseInt(parts[i + 1]);
+
+            freq[acsii] = count;
+        }
+
         return freq;
     }
 
@@ -182,6 +217,68 @@ public class Huffman {
      * so write it out that many times directly.
      */
     public static void huffmanDecode(String encodedFile, String decodeFile) throws IOException {
-        // TODO: implement
-    }
+
+            try (BufferedReader input = new BufferedReader(new FileReader(encodedFile));
+                 FileWriter output = new FileWriter(decodeFile)) {
+
+
+                String header = input.readLine();
+
+                if (header == null) {
+                    return;
+                }
+
+
+                int[] freq = parseHeader(header);
+                HuffmanTree root = createHuffTree(freq);
+
+                if (root == null) {
+                    return;
+                }
+
+
+                if (root instanceof HuffmanLeaf leaf) {
+
+                    int count = freq[leaf.charASCII()];
+
+                    for (int i = 0; i < count; i++) {
+                        output.write(leaf.charASCII());
+                    }
+
+                    return;
+                }
+
+
+                HuffmanTree current = root;
+
+
+                int bit;
+
+                while ((bit = input.read()) != -1) {
+
+
+                    if (current instanceof HuffmanNode node) {
+
+                        if (bit == '0') {
+                            current = node.left();
+                        } else if (bit == '1') {
+                            current = node.right();
+                        } else {
+                            continue;
+                        }
+                    }
+
+
+                    if (current instanceof HuffmanLeaf leaf) {
+
+                        output.write(leaf.charASCII());
+
+
+                        current = root;
+                    }
+                }
+            }
+        }
+
+
 }
