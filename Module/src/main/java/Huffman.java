@@ -34,7 +34,14 @@ public class Huffman {
      */
     public static int[] cntFreq(String filename) throws IOException {
         int[] freq = new int[NUM_CHARS];
-        // TODO: implement
+
+        FileInputStream input = new FileInputStream(filename);
+        int charec=input.read();
+        while (charec!=-1) {
+            freq[charec]++;
+            charec=input.read();
+        }
+        input.close();
         return freq;
     }
 
@@ -52,7 +59,7 @@ public class Huffman {
      *    one unique character), return a single leaf HuffmanNode for that
      *    character (no combine() call needed).
      */
-    public static HuffmanNode createHuffTree(int[] freq) {
+    public static HuffmanTree createHuffTree(int[] freq) {
         // TODO: implement
         HQueue queue= new HuffmanPQ();
 
@@ -72,7 +79,7 @@ public class Huffman {
         if(queue.isEmpty()){
             return null;
         }
-        return (HuffmanNode) queue.dequeue();
+        return (HuffmanTree) queue.dequeue();
     }
 
     /**
@@ -87,12 +94,28 @@ public class Huffman {
      * left/right branch to build a code out of; huffmanEncode/huffmanDecode
      * handle that case entirely through the header.
      */
+    public static void traverse(HuffmanTree tree, String path, String[] codes){
+        if (tree instanceof HuffmanNode node){
+            traverse(node.left(), path +"0",codes);
+            traverse(node.right(), path +"1",codes);
+        }
+        if(tree instanceof  HuffmanLeaf leaf){
+            codes[leaf.charASCII()] = path;
+        }
+
+    }
     public static String[] createCode(HuffmanTree root) {
         String[] codes = new String[NUM_CHARS];
         Arrays.fill(codes, "");
         // TODO: implement
+        if (root==null){
+            return codes;
+        }
+        traverse(root, "", codes);
         return codes;
     }
+
+
 
     /**
      * Given a frequency array (as produced by cntFreq()), returns a
@@ -103,8 +126,14 @@ public class Huffman {
      * Example: for the text "aaabbbbcc" this returns "97 3 98 4 99 2".
      */
     public static String createHeader(int[] freq) {
-        // TODO: implement
-        return "";
+        String header="";
+        for(int i=0; i< freq.length; i++){
+            if (freq[i]>0){
+                header=header+i+" "+freq[i]+" ";
+
+            }
+        }
+        return header.trim();
     }
 
     /**
